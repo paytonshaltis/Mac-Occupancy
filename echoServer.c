@@ -7,7 +7,7 @@
 #include <unistd.h>
 
 #define MAXLINE 4096 /*max text line length*/
-#define SERV_PORT 3001 /*port*/
+#define SERV_PORT 3000 /*port*/
 #define LISTENQ 8 /*maximum number of client connections */
 
 int main (int argc, char **argv) {
@@ -35,9 +35,12 @@ int main (int argc, char **argv) {
         clilen = sizeof(cliaddr);
         connfd = accept(listenfd, (struct sockaddr *) &cliaddr, &clilen);
         printf("%s\n","Received request...");
+           
+        // clear the buffer before receiving the first message
+      	memset(buf, 0, MAXLINE);
                     
-        while ((n = recv(connfd, buf, MAXLINE,0)) > 1)  {
-            printf("%s","String received from and resent to the client:");
+        while ((n = recv(connfd, buf, MAXLINE, 0)) > 1)  {
+            printf("%s","String received from and resent to the client: ");
             puts(buf);
             send(connfd, buf, n, 0);
 
@@ -50,7 +53,7 @@ int main (int argc, char **argv) {
             exit(1);
         }
         close(connfd);
-        printf("%s", "Closed the connection with the client.");
+        printf("%s", "Closed the connection with the client.\n");
     }
     //close listening socket
     close(listenfd); 
