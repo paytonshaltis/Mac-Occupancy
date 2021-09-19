@@ -1,0 +1,19 @@
+<!--NOTE: 
+    The owner must be root, 
+    The group must be wheel, 
+    Permissions must be 644 (rw_r__r__)
+-->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>Label</key>
+        <string>com.login</string>
+        <key>ProgramArguments</key>
+            <array>
+                <string>/Library/login.sh</string>
+            </array>
+        <key>RunAtLoad</key>
+        <true/>
+    </dict>
+</plist>
